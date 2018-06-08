@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Ting的博客">
 <meta property="og:description" content="学习阮一峰老师的《ECMAScript 6 入门》笔记，随学习进度更新。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-08T01:49:55.781Z">
+<meta property="og:updated_time" content="2018-06-08T01:52:08.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习笔记">
 <meta name="twitter:description" content="学习阮一峰老师的《ECMAScript 6 入门》笔记，随学习进度更新。">
@@ -172,9 +172,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>学习阮一峰老师的《ECMAScript 6 入门》笔记，随学习进度更新。<br><a id="more"></a></p>
-<p>#变量的解构赋值</p>
-<p>##圆括号问题<br>编译器辨别解构赋值中的式子是模式还是表达式必须解析到（或解析不到）<br>圆括号。ES6规定，只要可能会引起解构有歧义就不得使用圆括号。<br>“但是，这条规则实际上不那么容易辨别，处理起来相当麻烦。因此，建议<br>只要有可能，就不要在模式中放置圆括号。”</p>
-<p>###不能使用圆括号的情况<br>（1）变量声明语句<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全部报错</span></span><br><span class="line"><span class="keyword">let</span> [(a)] = [<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">x</span>: (c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> (&#123;<span class="attr">x</span>: c&#125;) = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x: c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x): c&#125; = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">o</span>: (&#123; <span class="attr">p</span>: p &#125;) &#125; = &#123; <span class="attr">o</span>: &#123; <span class="attr">p</span>: <span class="number">2</span> &#125; &#125;;</span><br></pre></td></tr></table></figure></p>
+<h1 id="变量的解构赋值"><a href="#变量的解构赋值" class="headerlink" title="变量的解构赋值"></a>变量的解构赋值</h1><h2 id="圆括号问题"><a href="#圆括号问题" class="headerlink" title="圆括号问题"></a>圆括号问题</h2><p>编译器辨别解构赋值中的式子是模式还是表达式必须解析到（或解析不到）<br>圆括号。ES6规定，只要可能会引起解构有歧义就不得使用圆括号。<br>“但是，这条规则实际上不那么容易辨别，处理起来相当麻烦。因此，建议<br>只要有可能，就不要在模式中放置圆括号。”</p>
+<h3 id="不能使用圆括号的情况"><a href="#不能使用圆括号的情况" class="headerlink" title="不能使用圆括号的情况"></a>不能使用圆括号的情况</h3><p>（1）变量声明语句<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全部报错</span></span><br><span class="line"><span class="keyword">let</span> [(a)] = [<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">x</span>: (c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> (&#123;<span class="attr">x</span>: c&#125;) = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x: c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x): c&#125; = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">o</span>: (&#123; <span class="attr">p</span>: p &#125;) &#125; = &#123; <span class="attr">o</span>: &#123; <span class="attr">p</span>: <span class="number">2</span> &#125; &#125;;</span><br></pre></td></tr></table></figure></p>
 
       
 
