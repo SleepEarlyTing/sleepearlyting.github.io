@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Ting的博客">
 <meta property="og:description" content="学习阮一峰老师的《ECMAScript 6 入门》笔记，随学习进度更新。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-08T09:08:11.530Z">
+<meta property="og:updated_time" content="2018-06-10T03:28:40.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习笔记">
 <meta name="twitter:description" content="学习阮一峰老师的《ECMAScript 6 入门》笔记，随学习进度更新。">
@@ -176,8 +176,49 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>学习阮一峰老师的《ECMAScript 6 入门》笔记，随学习进度更新。<br><a id="more"></a></p>
-<h1 id="变量的解构赋值"><a href="#变量的解构赋值" class="headerlink" title="变量的解构赋值"></a>变量的解构赋值</h1><h2 id="圆括号问题"><a href="#圆括号问题" class="headerlink" title="圆括号问题"></a>圆括号问题</h2><p>编译器辨别解构赋值中的式子是模式还是表达式必须解析到（或解析不到）圆括号。ES6规定，只要可能会引起解构有歧义就不得使用圆括号。<br>“但是，这条规则实际上不那么容易辨别，处理起来相当麻烦。因此，建议只要有可能，就不要在模式中放置圆括号。”</p>
-<h3 id="不能使用圆括号的情况"><a href="#不能使用圆括号的情况" class="headerlink" title="不能使用圆括号的情况"></a>不能使用圆括号的情况</h3><p>（1）变量声明语句<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全部报错</span></span><br><span class="line"><span class="keyword">let</span> [(a)] = [<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">x</span>: (c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> (&#123;<span class="attr">x</span>: c&#125;) = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x: c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x): c&#125; = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">o</span>: (&#123; <span class="attr">p</span>: p &#125;) &#125; = &#123; <span class="attr">o</span>: &#123; <span class="attr">p</span>: <span class="number">2</span> &#125; &#125;;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这种块中的文字是书中原话</p>
+</blockquote>
+<p>前面的let、const命令和块级作用域部分是做的纸质笔记，以后再整理。</p>
+<h1 id="变量的解构赋值"><a href="#变量的解构赋值" class="headerlink" title="变量的解构赋值"></a>变量的解构赋值</h1><h2 id="圆括号问题"><a href="#圆括号问题" class="headerlink" title="圆括号问题"></a>圆括号问题</h2><blockquote>
+<p>解构赋值虽然很方便，但是解析起来并不容易。对于编译器来说，一个式子到底是模式，还是表达式，没有办法从一开始就知道，必须解析到（或解析不到）等号才能知道。<br>由此带来的问题是，如果模式中出现圆括号怎么处理。ES6 的规则是，只要有可能导致解构的歧义，就不得使用圆括号。<br>但是，这条规则实际上不那么容易辨别，处理起来相当麻烦。因此，建议只要有可能，就不要在模式中放置圆括号</p>
+</blockquote>
+<h3 id="不能使用圆括号的情况"><a href="#不能使用圆括号的情况" class="headerlink" title="不能使用圆括号的情况"></a>不能使用圆括号的情况</h3><p>以下三种<strong>解构赋值</strong>不能使用圆括号。</p>
+<p>（1）变量声明语句</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全部报错</span></span><br><span class="line"><span class="keyword">let</span> [(a)] = [<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">x</span>: (c)&#125; = &#123;&#125;;<span class="comment">//①</span></span><br><span class="line"><span class="keyword">let</span> (&#123;<span class="attr">x</span>: c&#125;) = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x: c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x): c&#125; = &#123;&#125;;<span class="comment">//④</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">o</span>: (&#123; <span class="attr">p</span>: p &#125;) &#125; = &#123; <span class="attr">o</span>: &#123; <span class="attr">p</span>: <span class="number">2</span> &#125; &#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>（*）上面 6 个语句都会报错，因为它们都是<strong>变量声明语句</strong>，<strong>模式</strong>不能使用圆括号。</p>
+</blockquote>
+<p>看①到④这几个例子，对于上面那句话中模式该怎样理解？<br>在解释对象的解构赋值的内部机制时，书中写到：</p>
+<blockquote>
+<p>对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">foo</span>: baz &#125; = &#123; <span class="attr">foo</span>: <span class="string">"aaa"</span>, <span class="attr">bar</span>: <span class="string">"bbb"</span> &#125;;</span><br><span class="line">baz <span class="comment">// "aaa"</span></span><br><span class="line">foo <span class="comment">// error: foo is not defined</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>（~）上面代码中，<strong>foo是匹配的模式</strong>，baz才是变量。真正被赋值的是变量baz，而不是<strong>模式foo</strong>。</p>
+</blockquote>
+<p>按照这种理解，①到④这几个例子中，x是模式，c是变量，对c使用圆括号应该不算对模式使用圆括号，但是也会报错。<br>而在下文可以使用圆括号的情况中，形如<code>({x: (c)} = {});</code>的赋值语句却是正确的。<br>所以（*）表述中的重点应该是变量声明语句而不是模式，声明语句等号左侧除任何部分只要出现圆括号，编译器都会报错。<br>下文中在可以使用圆括号的情况中，也确实把是否为声明语句作为判断依据这样排除的。</p>
+<p>（2）函数参数<br>因为函数参数相当于声明函数作用域内的局部变量，因此也不能带有圆括号。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">[(z</span>)]) </span>&#123;<span class="keyword">return</span> z;&#125;<span class="comment">//报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">[z,(x</span>)]) </span>&#123;<span class="keyword">return</span> x;&#125;<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>（3）赋值语句的<strong>模式</strong>部分</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将整个模式都放在圆括号中，全部报错</span></span><br><span class="line">(&#123;<span class="attr">p</span>:a&#125;) = &#123;<span class="attr">p</span>:<span class="number">42</span>&#125;;</span><br><span class="line">([a])=[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//将一部分模式放在圆括号中，也会报错</span></span><br><span class="line">[(&#123;<span class="attr">p</span>:a&#125;),&#123;<span class="attr">x</span>:c&#125;] = [&#123;&#125;,&#123;&#125;];</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>但是将整个赋值表达式都放在圆括号中，不会报错，而且有时这样写是必要的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不会报错</span></span><br><span class="line">(&#123;<span class="attr">p</span>:a&#125; = &#123;<span class="attr">p</span>:<span class="number">42</span>&#125;);</span><br><span class="line">&#123;<span class="attr">p</span>:a&#125; = &#123;<span class="attr">p</span>:<span class="number">42</span>&#125;;<span class="comment">//SyntaxError: syntax error</span></span><br><span class="line">([a]=[<span class="number">5</span>]);</span><br></pre></td></tr></table></figure></p>
+<p>必须使用圆括号的情况：</p>
+<blockquote>
+<p>因为 JavaScript 引擎会将{x}理解成一个代码块，从而发生语法错误。只有<strong>不将大括号写在行首</strong>，避免 JavaScript 将其解释为代码块，才能解决这个问题。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">(&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="可以使用圆括号的情况"><a href="#可以使用圆括号的情况" class="headerlink" title="可以使用圆括号的情况"></a>可以使用圆括号的情况</h3><blockquote>
+<p>赋值语句的非模式部分，可以使用圆括号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[(b)] = [<span class="number">3</span>]; <span class="comment">// 正确</span></span><br><span class="line">(&#123; <span class="attr">p</span>: (d) &#125; = &#123;&#125;); <span class="comment">// 正确</span></span><br><span class="line">[(<span class="built_in">parseInt</span>.prop)] = [<span class="number">3</span>]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>上面三行语句可以正确执行，因为它们：<br>1.不是声明语句，都是赋值语句。<br>2.圆括号不属于模块的一部分，也不属于函数的参数部分。</p>
+<blockquote>
+<p>第一行语句中，模式是取数组的第一个成员，跟圆括号无关；第二行语句中，模式是p，而不是d；第三行语句与第一行语句的性质一致。</p>
+</blockquote>
 
       
 
@@ -445,19 +486,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搭建教程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">搭建教程</a>
               </li>
             
             <div class="clearfix"></div>
