@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Vue.js中修改第三方组件库的样式，浅谈style的scoped属性 | Ting的博客</title>
+  <title>数组的迭代方法会改变原数组中的引用类型 | Ting的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Vue.js中修改第三方组件库的样式，浅谈style的scoped属性">
-<meta property="og:url" content="http://yoursite.com/2018/07/27/Vue-js中修改第三方组件库的样式，浅谈style的scoped属性/index.html">
+  <meta name="description" content="背景：《js高程》在介绍数组的迭代方法(every,filter,forEach,map,some)时，最后提到一点  “以上方法都不会修改数组中的包含的值”。而在项目中使用迭代方法后我的原数组发生了变化。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组的迭代方法会改变原数组中的引用类型">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/使用数组的迭代方法可以改变原数组的一种情况/index.html">
 <meta property="og:site_name" content="Ting的博客">
+<meta property="og:description" content="背景：《js高程》在介绍数组的迭代方法(every,filter,forEach,map,some)时，最后提到一点  “以上方法都不会修改数组中的包含的值”。而在项目中使用迭代方法后我的原数组发生了变化。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-26T16:14:08.099Z">
+<meta property="og:image" content="http://yoursite.com/img/blogImg/simpleArr.png">
+<meta property="og:image" content="http://yoursite.com/img/blogImg/array.png">
+<meta property="og:image" content="http://yoursite.com/img/blogImg/array1.png">
+<meta property="og:updated_time" content="2018-08-12T16:49:35.388Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue.js中修改第三方组件库的样式，浅谈style的scoped属性">
+<meta name="twitter:title" content="数组的迭代方法会改变原数组中的引用类型">
+<meta name="twitter:description" content="背景：《js高程》在介绍数组的迭代方法(every,filter,forEach,map,some)时，最后提到一点  “以上方法都不会修改数组中的包含的值”。而在项目中使用迭代方法后我的原数组发生了变化。">
+<meta name="twitter:image" content="http://yoursite.com/img/blogImg/simpleArr.png">
   
     <link rel="alternative" href="/atom.xml" title="Ting的博客" type="application/atom+xml">
   
@@ -151,27 +159,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Vue-js中修改第三方组件库的样式，浅谈style的scoped属性" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用数组的迭代方法可以改变原数组的一种情况" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Vue.js中修改第三方组件库的样式，浅谈style的scoped属性
+      数组的迭代方法会改变原数组中的引用类型
     </h1>
   
 
         
-        <a href="/2018/07/27/Vue-js中修改第三方组件库的样式，浅谈style的scoped属性/" class="archive-article-date">
-  	<time datetime="2018-07-26T16:14:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-27</time>
+        <a href="/2018/08/12/使用数组的迭代方法可以改变原数组的一种情况/" class="archive-article-date">
+  	<time datetime="2018-08-12T14:35:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>背景：《js高程》在介绍数组的迭代方法(every,filter,forEach,map,some)时，最后提到一点</p>
+<blockquote>
+<p>“以上方法都不会修改数组中的包含的值”。<br>而在项目中使用迭代方法后我的原数组发生了变化。<br><a id="more"></a><br>先来看一下数组全部由简单类型值组成的情况<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="comment">//在数组中筛选出符合条件的某些元素组成新数组，并改变新数组中的元素的某些属性</span></span><br><span class="line"><span class="comment">//比如筛选出select属性为false的元素，并添加name属性</span></span><br><span class="line"><span class="keyword">var</span> selectArr = arr.map(</span><br><span class="line">    item =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(item&gt;<span class="number">2</span>)&#123;</span><br><span class="line">                item = <span class="number">5</span>;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'赋值后打印'</span>,item);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="/img/blogImg/simpleArr.png" alt="result"><br>可以看到迭代方法内,临时变量被改变了，但是原数组并没有发生变化</p>
+<p>再来看看原数组的元素是引用类型的情况，比如是对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [</span><br><span class="line">    &#123;</span><br><span class="line">        id:<span class="number">1</span>,</span><br><span class="line">        select:<span class="literal">false</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        id:<span class="number">2</span>,</span><br><span class="line">        select:<span class="literal">false</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        id:<span class="number">3</span>,</span><br><span class="line">        select:<span class="literal">true</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        id:<span class="number">4</span>,</span><br><span class="line">        select:<span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"><span class="comment">//在数组中筛选出符合条件的某些元素组成新数组，并改变新数组中的元素的某些属性</span></span><br><span class="line"><span class="comment">//比如筛选出select属性为false的元素，并添加name属性</span></span><br><span class="line"><span class="keyword">var</span> selectArr = arr.filter(</span><br><span class="line">    item =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(item.select)&#123;</span><br><span class="line">                item.name = <span class="string">"someObj"</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> item.select;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>来看一下执行迭代方法之后的<code>selectArr</code>和<code>arr</code><br><img src="/img/blogImg/array.png" alt="result"><br>可以看到原数组和筛选的数组中，id为3的对象都被添加了name属性<br>而且我们在对selectArr中的元素进行更改属性的操作时，也会影响到原数组arr<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selectArr[<span class="number">0</span>].test = <span class="number">233</span>;</span><br><span class="line"><span class="built_in">console</span>.log(selectArr);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/blogImg/array1.png" alt="testImg"></p>
+<h2 id="原因及解决办法"><a href="#原因及解决办法" class="headerlink" title="原因及解决办法"></a>原因及解决办法</h2><p>这里举得例子可能看着有些没有意义，实际项目中的数据结构其实更加复杂,按正常思路筛选数组元素后再进行操作返回结果集应该先用filter,再对新数组使用map,当时在用map时想尝试能否少使用一次迭代方法于是直接在map内部操作了item的属性，发现虽然满足了需求却改变了原始的数据。</p>
+<h3 id="函数传值按值传递，浅拷贝"><a href="#函数传值按值传递，浅拷贝" class="headerlink" title="函数传值按值传递，浅拷贝"></a>函数传值按值传递，浅拷贝</h3><p>因为js的函数传值是按值传递的，传递引用类型作为参数时，实际上传入的是变量保存的地址，迭代方法内操作的临时变量<code>item</code>是原变量的一个浅拷贝，他们保存的地址相同，会指向同一片堆内存，所以修改元素内部的属性也会在迭代方法外部。但是如果尝试修改原数组元素指向的地址，是会失败的，所以这也是高程上所说的“以上方法都不会修改数组中的包含的值”，虽然数组中的对象发生了变化，但是每个元素指向的地址值并没有变化。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>所以对于引用类型元素，如果不想改变原数组，应该在迭代方法内部申请临时对象进行深拷贝，然后对这个临时对象进行操作。</p>
+<h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p>拖了好久的坑终于填上了，特别鸣谢zjw同学陪我一起当夜猫子 囧rz。</p>
+
       
 
       
@@ -210,6 +230,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -260,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/27/Vue-js中修改第三方组件库的样式，浅谈style的scoped属性/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/12/使用数组的迭代方法可以改变原数组的一种情况/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +305,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/27/实现固定表头，表格内容滚动的表格/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          实现固定表头，表格内容滚动的表格
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/06/08/ES6学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES6学习笔记</div>
+    <a href="/2018/07/27/实现固定表头，表格内容滚动的表格/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">实现固定表头，表格内容滚动的表格</div>
       <i class="icon-circle-right"></i>
     </a>
   
