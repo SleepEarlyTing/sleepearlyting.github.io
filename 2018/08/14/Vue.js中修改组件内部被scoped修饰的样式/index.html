@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Ting的博客">
 <meta property="og:description" content="在使用vue.js开发单文件组件时，我们往往会在style标签中使用scoped属性来保持组件样式的独立性，也保证了组建内部样式表不会污染组件外部，但是在某些场合，组件库封装的样式不能满足需求，需要修改组件内部元素的样式。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-02T16:13:50.513Z">
+<meta property="og:updated_time" content="2018-09-02T16:27:01.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js中修改组件内部被scoped修饰的样式">
 <meta name="twitter:description" content="在使用vue.js开发单文件组件时，我们往往会在style标签中使用scoped属性来保持组件样式的独立性，也保证了组建内部样式表不会污染组件外部，但是在某些场合，组件库封装的样式不能满足需求，需要修改组件内部元素的样式。">
@@ -200,7 +200,7 @@
 <p>上述代码将会编译成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.a[data-v-f3f3eg9] .b &#123; /* ... */ &#125;</span><br></pre></td></tr></table></figure></p>
 <p>有些像 Sass 之类的预处理器无法正确解析 <code>&gt;&gt;&gt;</code>。这种情况下可以使用 <code>/deep/</code> 操作符取而代之——这是一个 <code>&gt;&gt;&gt;</code> 的别名，同样可以正常工作。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>vue Loader文档 <a href="https://vue-loader.vuejs.org/zh/guide/scoped-css.html" target="_blank" rel="noopener">https://vue-loader.vuejs.org/zh/guide/scoped-css.html</a><br>博客By J.2ue  <a href="https://2ue.github.io/2017/11/15/vue-style-scoped/" target="_blank" rel="noopener">https://2ue.github.io/2017/11/15/vue-style-scoped/</a></p>
-<p>###后记：<br>之所以会先介绍方法一是因为在项目一开始解决这个问题的时候还没有了解到深度作用选择器，在自己的尝试下发现了可以使用全局样式去覆盖，恰巧参考的第二篇博文的早起版本当时也是用的这个方法，虽然这个方法不应该提倡，但是这个探究的过程让我理解了scoped作用机制，所以还是把他写下来了。<br>J.2ue 的博客里还有关于这个问题探索过程的一件趣事，感兴趣的可以通过链接去阅读~</p>
+<h3 id="后记："><a href="#后记：" class="headerlink" title="后记："></a>后记：</h3><p>之所以会先介绍方法一是因为在项目一开始解决这个问题的时候还没有了解到深度作用选择器，在自己的尝试下发现了可以使用全局样式去覆盖，恰巧参考的第二篇博文的早起版本当时也是用的这个方法，虽然这个方法不应该提倡，但是这个探究的过程让我理解了scoped作用机制，所以还是把他写下来了。<br>J.2ue 的博客里还有关于这个问题探索过程的一件趣事，感兴趣的可以通过链接去阅读~</p>
 
       
 
