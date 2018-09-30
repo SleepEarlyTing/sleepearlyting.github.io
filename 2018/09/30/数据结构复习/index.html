@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/8 | Ting的博客</title>
+  <title>数据结构复习 | Ting的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ting的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/08/index.html">
+  <meta name="description" content="背景：专注学习了一段时间前端，计算机基础知识有很多遗忘，秋招已经接近尾声，接下来会对数据结构计组计网操作系统进行系统的复习。">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习">
+<meta property="og:url" content="http://yoursite.com/2018/09/30/数据结构复习/index.html">
 <meta property="og:site_name" content="Ting的博客">
+<meta property="og:description" content="背景：专注学习了一段时间前端，计算机基础知识有很多遗忘，秋招已经接近尾声，接下来会对数据结构计组计网操作系统进行系统的复习。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-30T15:16:58.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ting的博客">
+<meta name="twitter:title" content="数据结构复习">
+<meta name="twitter:description" content="背景：专注学习了一段时间前端，计算机基础知识有很多遗忘，秋招已经接近尾声，接下来会对数据结构计组计网操作系统进行系统的复习。">
   
     <link rel="alternative" href="/atom.xml" title="Ting的博客" type="application/atom+xml">
   
@@ -150,102 +155,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-数据结构复习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/14/Vue.js中修改组件内部被scoped修饰的样式/" class="archive-article-date">
-  	<time datetime="2018-08-14T15:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/14/Vue.js中修改组件内部被scoped修饰的样式/">Vue.js中修改组件内部被scoped修饰的样式</a>
+    <h1 class="article-title" itemprop="name">
+      数据结构复习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/09/30/数据结构复习/" class="archive-article-date">
+  	<time datetime="2018-09-30T14:10:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>背景：专注学习了一段时间前端，计算机基础知识有很多遗忘，秋招已经接近尾声，接下来会对数据结构计组计网操作系统进行系统的复习。<br><a id="more"></a><br>本文主要记录复习过程中一些通过复习纠正的错误和回忆起来的知识点</p>
+<h3 id="1-基本概念篇"><a href="#1-基本概念篇" class="headerlink" title="1.基本概念篇"></a>1.基本概念篇</h3><h4 id="a-数据结构"><a href="#a-数据结构" class="headerlink" title="a.数据结构"></a>a.数据结构</h4><p>数据结构由 逻辑结构 存储结构 和 数据的运算三要素组成，缺一不可。<br>抽象数据类型（ADT）使用（数据对象，数据关系和基本操作集）三元组来表示，可以表示一个完整的数据结构。<br>关于三要素组成的考研题：<br>    逻辑结构独立于存储结构，是面向实际问题的角度出发的。<br>    存储结构是逻辑结构的映射，不能独立于逻辑结构存在。<br>    “数据结构仅由逻辑结构和存储结构决定”这句话是错误的，因为缺少数据的运算这一要素。<br>    对于两种不同的数据结构，逻辑结构和物理结构是有可能相同的，比如二叉树和二叉排序树，他们的区别是建立数、插入删除结点这些操作的定义（数据运算）不同。<br>    相同的逻辑结构，在不同的存储方式下实现，运算效率是不同的，比如线性表用顺序存储，插入和删除平均要移动近一半元素，时间复杂度O（n）,而使用链式存储的话，插入和删除的时间复杂度是O（1）。<br>关于存储结构（也称物理结构）：<br>    存储结构有<br>                顺序存储 :逻辑相邻则物理相邻，可随机存取，每个元素占用的空间最少，但是只能使用相邻的整块存储单元，外部碎片较多。<br>                链式存储 :物理可不相邻，用指针表示相邻关系，不会出现碎片，充分利用空间，但是只能顺序存取，并且存储指针会额外消耗空间。<br>                索引存储 :为信息建立索引表，额外存储（关键字，地址）形式的索引项，检索速度快，但是索引表额外占用空间，增删时要额外做修改索引表的操作。<br>                散列（hash）存储 : 根据元素关键字直接计算存储地址，检索、增删都很快，但是散列函数设计不好可能会出现冲突，解决冲突要增加额外的时间和空间开销。<br>                这四种。<br>    顺序表、链表、哈希表、 循环队列（用顺序表方式实现的队列）既描述了逻辑结构也描述了物理结构。<br>    链式存储设计时，不同结点的存储空间可以不连续，但是 <strong>结点内</strong> 的存储单元地址（一定连续）。</p>
+<h4 id="b-算法"><a href="#b-算法" class="headerlink" title="b.算法"></a>b.算法</h4><p>算法是解决特定问题步骤的一种描述，具有有穷性、确定性、可行性、输入和输出五个特性<br>算法不等于程序，程序可能会有死循环，不能保证有穷性。<br>描述算法效率有时间复杂度和空间复杂度<br>时间复杂度是指基本运算的频度关于问题规模n的数量级，它不仅跟问题规模n有关，也跟输入数据性质有关，所以会出现最好最坏和平均情况，我们一般要考虑最坏情况的时间复杂度来保证算法运行时间不会比它长。<br>计算复杂度的方法:<br>    在给出代码的情况下，观察循环变量和问题规模的关系，找到执行次数和问题规模的关系。<br>    在只给出频度T（n）的递归公式时，使用数学方法分析。<br>    多层循环由内向外分析<br>    递归的情况下，观察T(n)和T（n-1）频度的关系，进行递推求解。<br>    非递归的情况下，直接累计执行次数。</p>
+<h5 id="斐波那契数列问题"><a href="#斐波那契数列问题" class="headerlink" title="斐波那契数列问题"></a>斐波那契数列问题</h5><p>使用递归方法实现，每次对f(n)运算拆成两个子运算f(n-1)和f(n-2)，最后要计算2^(n-1)次基本运算，所以时间复杂度为O（2^n）。<br>这种方式中间会出现大量的重复计算，通过复杂度也可以看出来效率很低，可以使用缓存数组来缓存出现过的f(i),这个值被再次需要时直接使用不用再次递归计算。<br>使用尾递归方法，将函数接口设计为f(i,j,n)从i = 0和j = 1开始计算，尾递归调用f(j,i+j,n-1)，条件判断当第三个参数等于1时<code>return 1;</code>,时间复杂度O（n）<br>不是用递归，使用循环，也是从i = 0和1开始累加至i = n,时间复杂度也是O（n）。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃水果~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/pay/pay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/pay/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/30/数据结构复习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/12/使用数组的迭代方法可以改变原数组的一种情况/" class="archive-article-date">
-  	<time datetime="2018-08-12T14:35:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/17/秋招面筋/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">秋招面筋</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/12/使用数组的迭代方法可以改变原数组的一种情况/">数组的迭代方法会改变原数组中的引用类型</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -268,8 +351,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
